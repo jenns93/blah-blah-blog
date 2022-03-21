@@ -1,0 +1,1 @@
+web: gunicorn blah_blah_blog.wsgi
