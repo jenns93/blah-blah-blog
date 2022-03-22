@@ -47,10 +47,6 @@
   }
 
 
-body {
-    background-color: #F9FAFC;
-}
-
 .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
@@ -194,3 +190,45 @@ body {
     cursor: pointer;
     opacity: 50%;
 }
+
+.login {
+    min-height: 100vh;
+  }
+  
+  .bg-image {
+    background-image: url('https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?cs=srgb&dl=pexels-vojtech-okenka-392018.jpg&fm=jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .login-heading {
+    font-weight: 300;
+  }
+  
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+  }
+
+
+  .card-img-left {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+    background-size: cover;
+  }
+  
+  
+  .btn-google {
+    color: white !important;
+    background-color: #ea4335;
+  }
+  
+  .btn-facebook {
+    color: white !important;
+    background-color: #3b5998;
+  }
+  body {
+    background: #ffffff;
+  }
