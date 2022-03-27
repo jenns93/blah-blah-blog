@@ -37,23 +37,36 @@
                 </p>
                 <div class="row">
 
-                    <div class="col-1">
+                    <div class="col-2">
                         <strong>
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
                                 {% csrf_token %}
                                 {% if liked %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fa-solid fa-thumbs-up"></i></button>
-
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-smile"></i></button>
+                                <span class="text-secondary">{{ post.number_of_likes }}</span>
                                 {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fa-light fa-thumbs-up"></i></button>
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="far fa-smile"></i></button>
+                                <span class="text-secondary">{{ post.number_of_likes }}</span>
                                 {% endif %}
-
+                            </form>
+                            <form class="d-inline" action="{% url 'post_dislike' post.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if disliked %}
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-frown"></i></button>
+                                <span class="text-secondary">{{ post.number_of_dislikes }}</span>
+                                {% else %}
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="far fa-frown"></i></button>
+                                <span class="text-secondary">{{ post.number_of_dislikes }}</span>
+                                {% endif %}
                             </form>
                             {% else %}
-                            <span class="text-secondary"><i class="fa-duotone fa-thumbs-up"></i></span>
+                            <span class="text-secondary"><i class="fad fa-smile"></i></span>
+                            
+                            <span class="text-secondary"><i class="fad fa-frown"></i></span>
                             {% endif %}
-                            <span class="text-secondary">{{ post.number_of_likes }}</span>
+                           
+                           
                         </strong>
                     </div>
                     <div class="col-1">

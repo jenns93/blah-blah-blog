@@ -21,6 +21,9 @@ class PostDetail(View):
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
+        disliked = False
+        if post.dislikes.filter(id=self.request.user.id).exists():
+            disliked = True
 
         return render(
             request,
@@ -30,6 +33,7 @@ class PostDetail(View):
                 "comments": comments,
                 "commented": False,
                 "liked": liked,
+                "disliked": disliked,
                 "comment_form": CommentForm()
             },
         )
@@ -61,6 +65,7 @@ class PostDetail(View):
                 "comments": comments,
                 "commented": True,
                 "liked": liked,
+                "disliked": disliked,
                 "comment_form": CommentForm()
             },
         )
@@ -74,5 +79,19 @@ class Postlike(View):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
+            post.dislikes.remove(request.user)
+
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+class Postdislike(View):
+    
+    def post(self, request, slug, *args, **kwargs):
+        post = get_object_or_404(Post, slug=slug)
+        if post.dislikes.filter(id=request.user.id).exists():
+            post.dislikes.remove(request.user)
+        else:
+            post.dislikes.add(request.user)
+            post.likes.remove(request.user)
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
