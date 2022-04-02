@@ -1,5 +1,6 @@
-from .models import Comment, Post
+from .models import Comment, Post, Contact
 from django import forms
+
 
 
 class CommentForm(forms.ModelForm):
@@ -22,3 +23,16 @@ class PostForm(forms.ModelForm):
             "content",
             "status",
         )
+
+
+class ContactForm(forms.ModelForm):
+    model = Contact
+    fields = (
+        "name",
+        "username",
+        "related_post",
+        "related_author",
+        "issue_type",
+        "issue_details",
+        "created_on",
+    )

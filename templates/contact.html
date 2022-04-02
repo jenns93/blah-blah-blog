@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+{% if user.is_authenticated %}
+         <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="card-body">
+               <h3>Contact Us:</h3>
+               <p>Posting as: {{ user.username }}</p>
+               <form method="post" style="margin-top: 1.3em;">
+                  {{ contact_form | crispy }}
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+               </form>
+               <!-- For later -->
+            
+         {% endif %}
+            </div>
+         </div>
+
+{% endblock %}

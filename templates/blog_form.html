@@ -1,8 +1,8 @@
 
 {% extends 'base.html' %} {% block content %}
-{% load crispy_forms_tags %}
-{% if user.is_authenticated %}
 
+{% if user.is_authenticated %}
+{% load crispy_forms_tags %}
 
 <div class="container px-5 my-5">
     <div class="row justify-content-center">
@@ -16,7 +16,7 @@
        
   
             <p>Posting as: {{ user.username }}</p>
-            <form class="contactForm" id="add_recipe_form" data-sb-form-api-token="API_TOKEN" method="post" enctype="multipart/form-data">
+            <form class="contactForm"  data-sb-form-api-token="API_TOKEN" method="post" enctype="multipart/form-data">
                 {{ post_form | crispy }}
                 {% csrf_token %}
                 <button class="btn btn-secondary right mb-2" type="submit" value="Save">Add Blog post</button>
@@ -34,7 +34,6 @@
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 {% else %}
 
-{% include "not_logged_in_error.html" %}
 
 {% endif %}
 

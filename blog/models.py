@@ -23,6 +23,9 @@ GENRE = (
 )
 
 
+ISSUE_TYPE = ((0, "Post"), (1, "Comment"), (2, "User"), (3, "Profile"), (4, "Other"))
+
+
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -67,3 +70,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    username = models.CharField(max_length=200, unique=True)
+    related_post = models.CharField(max_length=200, unique=True)
+    related_author = models.CharField(max_length=200, unique=True)
+    issue_type = models.IntegerField(choices=ISSUE_TYPE, default=0)
+    issue_details = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)

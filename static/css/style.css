@@ -1,234 +1,236 @@
 @media (min-width: 768px) {
-    .animate {
-      animation-duration: 0.3s;
-      -webkit-animation-duration: 0.3s;
-      animation-fill-mode: both;
-      -webkit-animation-fill-mode: both;
-    }
+  .animate {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
   }
-  
-  @keyframes slideIn {
-    0% {
-      transform: translateY(1rem);
-      opacity: 0;
-    }
-  
-    100% {
-      transform: translateY(0rem);
-      opacity: 1;
-    }
-  
-    0% {
-      transform: translateY(1rem);
-      opacity: 0;
-    }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
   }
-  
-  @-webkit-keyframes slideIn {
-    0% {
-      -webkit-transform: transform;
-      -webkit-opacity: 0;
-    }
-  
-    100% {
-      -webkit-transform: translateY(0);
-      -webkit-opacity: 1;
-    }
-  
-    0% {
-      -webkit-transform: translateY(1rem);
-      -webkit-opacity: 0;
-    }
+
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
   }
-  
-  .slideIn {
-    -webkit-animation-name: slideIn;
-    animation-name: slideIn;
+
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
   }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+}
 
 
 .brand {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
+  font-family: Lato, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #4A4A4F;
 }
 
 .red-o {
-    color: #E84610;
+  color: #E84610;
 }
 
 .thin {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .light-bg {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .dark-bg {
-    background-color: #445261;
+  background-color: #445261;
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+  background-color: #F9FAFC;
 }
 
 .card {
-    border: none;
-    background-color: transparent;
+  border: none;
+  background-color: transparent;
 }
 
 .image-container {
-    position: relative;
+  position: relative;
 }
 
 .image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #ffc800;
+  position: absolute;
+  bottom: 5%;
+  min-width: 30%;
+  left: -2px;
+  background-color: #ffc800;
 }
 
 .author {
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
+  color: white;
+  margin: 4px;
+  text-transform: uppercase;
 }
 
 .masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 33vh;
-    width: 100%;
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  height: 33vh;
+  width: 100%;
 }
 
 .masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
+  background-color: #445261;
+  color: white;
+  position: relative;
 }
 
 .masthead-image {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 90%;
+  height: 100%;
+  width: 150%;
+  background: #445261;
+  -webkit-transform: skew(15deg);
+  -moz-transform: skew(15deg);
+  transform: skew(15deg);
+  z-index: 100;
 }
 
 .post-link {
-    text-decoration: none;
-    color: #445261;
+  text-decoration: none;
+  color: #445261;
 }
 
 .post-link:hover,
 .page-link {
-    color: #E84610;
+  color: #E84610;
 }
 
 .post-title {
-    margin-top: 20%;
-    margin-left: 5%;
+  margin-top: 20%;
+  margin-left: 5%;
 }
 
 .post-subtitle {
-    margin-left: 5%;
-    color: lightgray;
+  margin-left: 5%;
+  color: lightgray;
 }
 
 .btn-signup {
-    background-color: #23BBBB;
-    color: #fff;
+  background-color: #23BBBB;
+  color: #fff;
 }
 
 .btn-signup:hover,
 .btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
+  background-color: #fff;
+  color: #23BBBB;
 }
 
 .link {
-    color: #23BBBB;
-    text-decoration: none;
+  color: #23BBBB;
+  text-decoration: none;
 }
 
 .link:hover,
 .link:active {
-    color: #ffc800;
-    text-decoration: underline;
+  color: #ffc800;
+  text-decoration: underline;
 }
 
 .btn-like {
-    color: #ffc800;
-    border: none;
-    background: transparent;
+  color: #ffc800;
+  border: none;
+  background: transparent;
 }
 
 .btn-like:hover,
 .btn-like:active {
-    color: #ffc800;
-    background: transparent;
-    border: none;
+  color: #ffc800;
+  background: transparent;
+  border: none;
 }
 
 .card-img-top:hover{
-    cursor: pointer;
-    opacity: 50%;
+  cursor: pointer;
+  opacity: 50%;
+  background-color:rgb(255, 250, 250);
+  
 }
 
 .login {
-    min-height: 100vh;
-  }
-  
-  .bg-image {
-    background-image: url('https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?cs=srgb&dl=pexels-vojtech-okenka-392018.jpg&fm=jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .login-heading {
-    font-weight: 300;
-  }
-  
-  .btn-login {
-    font-size: 0.9rem;
-    letter-spacing: 0.05rem;
-    padding: 0.75rem 1rem;
-  }
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?cs=srgb&dl=pexels-vojtech-okenka-392018.jpg&fm=jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-heading {
+  font-weight: 300;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
 
 
-  .card-img-left {
-    width: 45%;
-    /* Link to your background image using in the property below! */
-    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-    background-size: cover;
-  }
-  
-  
-  .btn-google {
-    color: white !important;
-    background-color: #ea4335;
-  }
-  
-  .btn-facebook {
-    color: white !important;
-    background-color: #3b5998;
-  }
-  body {
-    background: #ffffff;
-  }
+.card-img-left {
+  width: 45%;
+  /* Link to your background image using in the property below! */
+  background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+  background-size: cover;
+}
+
+
+.btn-google {
+  color: white !important;
+  background-color: #ea4335;
+}
+
+.btn-facebook {
+  color: white !important;
+  background-color: #3b5998;
+}
+body {
+  background: #ffffff;
+}
