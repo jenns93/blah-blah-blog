@@ -2,36 +2,39 @@
 {% block content %}
 {% load crispy_forms_tags %}
 <!-- Page Content -->
+<section class="py-4">
+   <div class="container">
+     <h1 class="fw-light">Post & Discuss all your favorite movies, TV shows, books and more!</h1>
+     <p class="lead">Blah Blah Blog is the place to make your case or argue your point!</p>
+   </div>
+ </section>
 <div class="container">
    <div class="row">
       {% for post in post_list %}
       <!-- Team Member 1 -->
       <div class="col-xl-3 col-md-6 mb-4">
          <div class="card border-0 shadow">
-            <a href="{% url 'post_detail' post.slug %}">
-            {% if "placeholder" in post.featured_image.url %}
-            <img src="https://images.pexels.com/photos/5662857/pexels-photo-5662857.png?cs=srgb&dl=pexels-tima-miroshnichenko-5662857.jpg&fm=jpg" class="card-img-top" alt="...">
-            {% else %}
-            <img class="card-img-top" src=" {{ post.featured_image.url }}">
-            {% endif %}
-            </a>
-            <div class="card-body text-center">
-               <h5 class="card-title mb-0">Author: {{ post.author }}</h5>
-               <a href="{% url 'post_detail' post.slug %}">
-                  <h6 class="card-text text-black-50">{{ post.title }}</h6>
-                  <h6 class="card-text text-black-50">{{ post.excerpt }}</h6>
-               </a>
-               <hr />
-               <a href="{% url 'post_detail' post.slug %}">
-                  <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-smile"></i>
-                     {{ post.number_of_likes }} 
-                     <i class="far fa-frown"></i>
-                     {{ post.number_of_dislikes }}
-                  </p>
-               </a>
-            </div>
+             <a href="{% url 'post_detail' post.slug %}">
+             {% if "placeholder" in post.featured_image.url %}
+             <img src="https://images.pexels.com/photos/5662857/pexels-photo-5662857.png?cs=srgb&dl=pexels-tima-miroshnichenko-5662857.jpg&fm=jpg" class="card-img-top" alt="...">
+             {% else %}
+             <img class="card-img-top" src=" {{ post.featured_image.url }}">
+             {% endif %}
+             </a>
+             <div class="card-body text-center">
+             <h5 class="card-title mb-0">{{ post.title }}</h5>
+             <h6 class="card-text text-black-50">{{ post.name_of_show_or_film }}</h6>
+             <h6 class="card-text text-black-50">Author: {{ post.author }}</h6>
+             <hr />
+             <p class="card-text text-muted h6">Posted:{{ post.created_on|date:"d/m/y at H:i"}}</p>
+             <i class="far fa-smile"></i>
+             {{ post.number_of_likes }} 
+             <i class="far fa-frown"></i>
+             {{ post.number_of_dislikes }}
+             </a>
+             </div>
          </div>
-      </div>
+     </div>
       {% if forloop.counter|divisibleby:3 %}
    </div>
    <div class="row">

@@ -2,10 +2,10 @@
 {% block content %}
 {% load crispy_forms_tags %}
 <!-- Page Content -->
-<h5 class="card-title mb-0">Profile: {{ user.username }}</h5>
+<h5 class="card-title mb-0 offset-md-2">Profile: {{ user.username }}</h5>
 <div class="container">
    <div class="row">
-        {% for post in user_posts %}
+        {% for post in user.blog_posts.all %}
             <!-- Team Member 1 -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-0 shadow">
@@ -17,26 +17,28 @@
                     {% endif %}
                     </a>
                     <div class="card-body text-center">
-                    <h5 class="card-title mb-0">Author: {{ post.author }}</h5>
-                    <a href="{% url 'post_detail' post.slug %}">
-                        <h6 class="card-text text-black-50">{{ post.title }}</h6>
-                        <h6 class="card-text text-black-50">{{ post.excerpt }}</h6>
-                    </a>
+                    <h5 class="card-title mb-0">{{ post.title }}</h5>
+                    <h6 class="card-text text-black-50">{{ post.name_of_show_or_film }}</h6>
+                    <h6 class="card-text text-black-50">Author: {{ post.author }} <a href="{% url 'edit_post_form' post.slug %}"><small>(edit)</small></a></h6>
+                    {% if post.status == 1 %}
+                    <h6 class="card-text text-black-50">Status: Published</h6>
                     <hr />
-                    <a href="{% url 'post_detail' post.slug %}">
-                        <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-smile"></i>
-                            {{ post.number_of_likes }} 
-                            <i class="far fa-frown"></i>
-                            {{ post.number_of_dislikes }}
-                        </p>
+                    <p class="card-text text-muted h6">Posted:{{ post.created_on|date:"d/m/y at H:i"}}</p>
+                    <i class="far fa-smile"></i>
+                    {{ post.number_of_likes }} 
+                    <i class="far fa-frown"></i>
+                    {{ post.number_of_dislikes }}
+                        {% else %}
+                        <h6 class="card-text text-black-50">Status: Draft</h6>
+                        {% endif %}
                     </a>
                     </div>
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:3 %}
+        {% if forloop.counter|divisibleby:3 %}
             </div>
-            <div class="row">
-            {% endif %}
+    <div class="row">
+        {% endif %}
         {% endfor %}
     </div>
    {% if is_paginated %}

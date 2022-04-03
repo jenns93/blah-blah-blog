@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+
+{% if user.is_authenticated %}
+{% load crispy_forms_tags %}
+
+<div class="container px-5 my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 rounded-3 shadow-lg">
+          <div class="card-body p-4">
+            <div class="text-center">
+              <div class="h1 fw-light">Edit blog post</div>
+              <p class="mb-4 text-muted">Edit your post below, remember to fill in all the criteria.</p>
+            </div>
+       
+  
+            <p>Posting as: {{ user.username }}</p>
+            <form class="contactForm"  data-sb-form-api-token="API_TOKEN" method="post" enctype="multipart/form-data">
+                {{ post_form | crispy }}
+                {% csrf_token %}
+                <button class="btn btn-secondary right mb-2" type="submit" value="Save">Edit Blog post</button>
+            </form>
+            
+            <!-- End of contact form -->
+  
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+  <!-- CDN Link to SB Forms Scripts -->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+{% else %}
+
+
+{% endif %}
+
+{% endblock %}

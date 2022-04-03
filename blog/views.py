@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
@@ -10,7 +10,7 @@ from .forms import CommentForm, PostForm
 
 def create_post(request):
     """
-    renders share a post page
+    renders create post page
     """
     post_form = PostForm(request.POST or None, request.FILES or None)
     context = {
@@ -22,12 +22,49 @@ def create_post(request):
         if post_form.is_valid():
             post_form = post_form.save(commit=False)
             post_form.author = request.user
-            post_form.status = 1
             post_form.save()
             return redirect('home')
     else:
         post_form = PostForm()
     return render(request, "blog_form.html", context)
+
+
+def edit_post(request, slug):
+    """
+    renders edit post page
+    """
+    post = get_object_or_404(Post, slug=slug)
+    post_form = PostForm(request.POST or None, instance=post)
+    context = {
+        'post_form': post_form,
+        'post' : post
+    }
+
+    if request.method == "POST":
+        post_form = PostForm(request.POST, request.FILES, instance=post)
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('profile')
+    else:
+        post_form = PostForm(instance=post)
+    return render(request, "edit_post_form.html", context)
+
+
+
+class PostListProfile(generic.ListView):
+    model = Post
+    queryset = Post.objects.filter(status=1).order_by("-created_on")
+    template_name = "profile.html"
+    paginate_by = 6
+
+
+    def userprofile(self, request):
+        user = self.request.user
+        user_posts = Post.objects.filter(user=self.request.author).order_by('created_on')
+        template = 'profile.html'
+        return render(request, template, {'user_posts': user_posts, 'user':user})
 
 
 class PostList(generic.ListView):
