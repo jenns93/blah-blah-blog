@@ -28,7 +28,7 @@
                 {% endif %}
                 <div class="card-body text-center">
                 <h5 class="card-title mb-0">{{ post.title }}</h5>
-                <h6 class="card-text text-black-50">{{ post.name_of_show_or_film }}</h6>
+                <h6 class="card-text text-black-50">{{ post.name_of_show_or_film }} | {{ post.get_media_type_display }} | <a href="{% url 'category' post.genre %}">{{ post.get_genre_display }}</a></h6>
                 <h6 class="card-text text-black-50">Author: {{ post.author }}
                     <a href="{% url 'edit_post_form' post.slug %}"><small>(edit)</small></a>
                     <a href="{% url 'delete_post' post.slug %}"><small>(delete)</small></a>

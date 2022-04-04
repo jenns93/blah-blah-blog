@@ -69,7 +69,7 @@ def post_category(request, genre):
     """ 
     Category list view
     """
-    category_posts = Post.objects.filter(genre=genre)
+    category_posts = Post.objects.filter(genre=genre, status=1).order_by("-created_on")
     return render(request, 'category.html', {'genre': genre, 'category_posts': category_posts})
 
 
