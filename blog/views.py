@@ -65,6 +65,14 @@ def delete_post(request, slug):
         return render(request, "delete_post.html", context)
 
 
+def post_category(request, genre):
+    """ 
+    Category list view
+    """
+    category_posts = Post.objects.filter(genre=genre)
+    return render(request, 'category.html', {'genre': genre, 'category_posts': category_posts})
+
+
 class PostListProfile(generic.ListView):
     """
     Profile post list

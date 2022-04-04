@@ -6,11 +6,12 @@
    <div class="container">
      <h1 class="fw-light">Post & Discuss all your favorite movies, TV shows, books and more!</h1>
      <p class="lead">Blah Blah Blog is the place to make your case or argue your point!</p>
+     <h1>{{ genre }}</h1>
    </div>
  </section>
 <div class="container">
    <div class="row">
-      {% for post in post_list %}
+      {% for post in category_posts %}
       <!-- Team Member 1 -->
       <div class="col-xl-3 col-md-6 mb-4">
          <div class="card border-0 shadow">
@@ -23,7 +24,7 @@
              </a>
              <div class="card-body text-center">
              <h5 class="card-title mb-0">{{ post.title }}</h5>
-             <h6 class="card-text text-black-50">{{ post.get_media_type_display }} | {{ post.name_of_show_or_film }} | <a href="{% url 'category' post.genre %}" >{{ post.get_genre_display }}</a></h6>
+             <h6 class="card-text text-black-50">{{ post.get_media_type_display }} | {{ post.name_of_show_or_film }} | {{ post.get_genre_display }}</h6>
              <h6 class="card-text text-black-50">Author: {{ post.author }}</h6>
              <hr />
              <p class="card-text text-muted h6">Posted:{{ post.created_on|date:"d/m/y at H:i"}}</p>
