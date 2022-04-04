@@ -6,6 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm, PostForm
+from django.utils.text import slugify
 
 
 def create_post(request):
@@ -14,7 +15,7 @@ def create_post(request):
     """
     post_form = PostForm(request.POST or None, request.FILES or None)
     context = {
-        'post_form': post_form,
+        "post_form": post_form,
     }
 
     if request.method == "POST":
@@ -22,8 +23,9 @@ def create_post(request):
         if post_form.is_valid():
             post_form = post_form.save(commit=False)
             post_form.author = request.user
+            post_form.slug = slugify(post_form.title)
             post_form.save()
-            return redirect('home')
+            return redirect("home")
     else:
         post_form = PostForm()
     return render(request, "blog_form.html", context)
@@ -35,10 +37,7 @@ def edit_post(request, slug):
     """
     post = get_object_or_404(Post, slug=slug)
     post_form = PostForm(request.POST or None, instance=post)
-    context = {
-        'post_form': post_form,
-        'post': post
-    }
+    context = {"post_form": post_form, "post": post}
 
     if request.method == "POST":
         post_form = PostForm(request.POST, request.FILES, instance=post)
@@ -46,7 +45,7 @@ def edit_post(request, slug):
             post = post_form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('profile')
+            return redirect("profile")
     else:
         post_form = PostForm(instance=post)
     return render(request, "edit_post_form.html", context)
@@ -56,42 +55,47 @@ def delete_post(request, slug):
     """
     Deletes post
     """
-    
+
     post = get_object_or_404(Post, slug=slug)
-    context = {'post': post}
+    context = {"post": post}
     if request.method == "POST":
         post.delete()
-        return redirect('profile')
+        return redirect("profile")
     else:
         return render(request, "delete_post.html", context)
 
 
 class PostListProfile(generic.ListView):
+    """
+    Profile post list
+    """
     model = Post
-    queryset = Post.objects.filter(status=1).order_by("-created_on")
+    queryset = Post.objects.order_by("-created_on")
     template_name = "profile.html"
-    paginate_by = 6
-
-
-    def userprofile(self, request):
-        user = self.request.user
-        user_posts = Post.objects.filter(user=self.request.author).order_by('created_on')
-        template = 'profile.html'
-        return render(request, template, {'user_posts': user_posts, 'user':user})
+    paginate_by = 8
 
 
 class PostList(generic.ListView):
+    """
+    Index post list
+    """
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "index.html"
-    paginate_by = 6
+    paginate_by = 8
 
 
 class PostDetail(View):
+    """
+    Post detail view
+    """
     def get(self, request, slug, *args, **kwargs):
+        """
+        Gets post details
+        """
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by("-created_on")
+        comments = post.comments.filter(approved=True).order_by("created_on")
 
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
@@ -115,6 +119,9 @@ class PostDetail(View):
         )
 
     def post(self, request, slug, *args, **kwargs):
+        """
+        Post comments
+        """
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.order_by("created_on")
@@ -154,7 +161,13 @@ class PostDetail(View):
 
 
 class Postlike(View):
+    """
+    Like details
+    """
     def post(self, request, slug, *args, **kwargs):
+        """
+        Post like
+        """
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
@@ -166,7 +179,13 @@ class Postlike(View):
 
 
 class Postdislike(View):
+    """
+    Dislike details
+    """
     def post(self, request, slug, *args, **kwargs):
+        """
+        Post dislike
+        """
         post = get_object_or_404(Post, slug=slug)
         if post.dislikes.filter(id=request.user.id).exists():
             post.dislikes.remove(request.user)

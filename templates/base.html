@@ -39,9 +39,10 @@
                         <a class="dropdown-item" href="{% url 'blog_form' %}">Blog Form</a>
                         
                         {% else %}
-                        <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
-                        <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+                        <a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a>
+                        
                         {% endif %}
                      </div>
                   </li>

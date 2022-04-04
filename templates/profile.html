@@ -6,9 +6,10 @@
 <div class="container">
    <div class="row">
         {% for post in user.blog_posts.all %}
-            <!-- Team Member 1 -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-0 shadow">
+        <!-- Team Member 1 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                {% if post.status == 1 %}
                     <a href="{% url 'post_detail' post.slug %}">
                     {% if "placeholder" in post.featured_image.url %}
                     <img src="https://images.pexels.com/photos/5662857/pexels-photo-5662857.png?cs=srgb&dl=pexels-tima-miroshnichenko-5662857.jpg&fm=jpg" class="card-img-top" alt="...">
@@ -16,35 +17,43 @@
                     <img class="card-img-top" src=" {{ post.featured_image.url }}">
                     {% endif %}
                     </a>
-                    <div class="card-body text-center">
-                    <h5 class="card-title mb-0">{{ post.title }}</h5>
-                    <h6 class="card-text text-black-50">{{ post.name_of_show_or_film }}</h6>
-                    <h6 class="card-text text-black-50">Author: {{ post.author }}
-                        <a href="{% url 'edit_post_form' post.slug %}"><small>(edit)</small></a>
-                        <a href="{% url 'delete_post' post.slug %}"><small>(delete)</small></a>
-                    </h6>
-                    {% if post.status == 1 %}
-                    <h6 class="card-text text-black-50">Status: Published</h6>
-                    <hr />
-                    <p class="card-text text-muted h6">Posted:{{ post.created_on|date:"d/m/y at H:i"}}</p>
-                    <i class="far fa-smile"></i>
-                    {{ post.number_of_likes }} 
-                    <i class="far fa-frown"></i>
-                    {{ post.number_of_dislikes }}
-                        {% else %}
-                        <h6 class="card-text text-black-50">Status: Draft</h6>
-                        {% endif %}
+                {% else %}
+                <a href="{% url 'edit_post_form' post.slug %}">
+                    {% if "placeholder" in post.featured_image.url %}
+                    <img src="https://images.pexels.com/photos/5662857/pexels-photo-5662857.png?cs=srgb&dl=pexels-tima-miroshnichenko-5662857.jpg&fm=jpg" class="card-img-top" alt="...">
+                    {% else %}
+                    <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                    {% endif %}
                     </a>
-                    </div>
+                {% endif %}
+                <div class="card-body text-center">
+                <h5 class="card-title mb-0">{{ post.title }}</h5>
+                <h6 class="card-text text-black-50">{{ post.name_of_show_or_film }}</h6>
+                <h6 class="card-text text-black-50">Author: {{ post.author }}
+                    <a href="{% url 'edit_post_form' post.slug %}"><small>(edit)</small></a>
+                    <a href="{% url 'delete_post' post.slug %}"><small>(delete)</small></a>
+                </h6>
+                <h6 class="card-text text-black-50">{{ post.get_status_display }}</h6>
+                {% if post.status == 1 %}
+                <hr />
+                <p class="card-text text-muted h6">Posted:{{ post.created_on|date:"d/m/y at H:i"}}</p>
+                <i class="far fa-smile"></i>
+                {{ post.number_of_likes }} 
+                <i class="far fa-frown"></i>
+                {{ post.number_of_dislikes }}
+                {% else %}
+                {% endif %}
+                </a>
                 </div>
             </div>
-        {% if forloop.counter|divisibleby:3 %}
-            </div>
+        </div>
+        {% if forloop.counter|divisibleby:4 %}
+    </div>
     <div class="row">
         {% endif %}
         {% endfor %}
     </div>
-   {% if is_paginated %}
+    {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}

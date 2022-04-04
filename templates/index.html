@@ -23,7 +23,7 @@
              </a>
              <div class="card-body text-center">
              <h5 class="card-title mb-0">{{ post.title }}</h5>
-             <h6 class="card-text text-black-50">{{ post.name_of_show_or_film }}</h6>
+             <h6 class="card-text text-black-50">{{ post.get_media_type_display }} | {{ post.name_of_show_or_film }} | {{ post.get_genre_display }}</h6>
              <h6 class="card-text text-black-50">Author: {{ post.author }}</h6>
              <hr />
              <p class="card-text text-muted h6">Posted:{{ post.created_on|date:"d/m/y at H:i"}}</p>
@@ -35,7 +35,7 @@
              </div>
          </div>
      </div>
-      {% if forloop.counter|divisibleby:3 %}
+      {% if forloop.counter|divisibleby:4 %}
    </div>
    <div class="row">
       {% endif %}
