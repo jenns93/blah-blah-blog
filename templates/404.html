@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container px-5 my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 rounded-3 shadow-lg">
+          <div class="card-body p-4">
+            <div class="text-center">
+              <div class="h1 fw-light">404 Page not found</div>
+            </div>
+       
+            {% if user.is_authenticated %}
+            <p>Sorry {{ user.username }} this page cannot be found.</p>
+            <a class="dropdown-item" href="{% url 'profile' %}">Back to My Profile?</a><br>
+            <a class="dropdown-item" href="{% url 'home' %}">Back to Home?</a><br>
+            {% else %}
+            <p>Sorry this page cannot be found.</p>
+            <a class="dropdown-item" href="{% url 'home' %}">Back to Home?</a><br>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+  <!-- CDN Link to SB Forms Scripts -->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+
+
+{% endif %}
+
+{% endblock %}

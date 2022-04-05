@@ -73,6 +73,10 @@ def post_category(request, genre):
     return render(request, 'category.html', {'genre': genre, 'category_posts': category_posts})
 
 
+def page_not_found_view(request, exception):
+    return render(request, '404.html', status=404)
+
+
 class PostListProfile(generic.ListView):
     """
     Profile post list

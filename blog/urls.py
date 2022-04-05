@@ -12,3 +12,6 @@ urlpatterns = [
     path("like/<slug:slug>/", views.Postlike.as_view(), name="post_like"),
     path("dislike/<slug:slug>/", views.Postdislike.as_view(), name="post_dislike"),
 ]
+
+
+handler404 = "blog.views.page_not_found_view"
