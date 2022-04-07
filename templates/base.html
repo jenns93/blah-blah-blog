@@ -40,7 +40,6 @@
                         <a class="dropdown-item" href="{% url 'blog_form' %}">Blog Form</a>
                         
                         {% else %}
-                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
                         <a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a>
                         
@@ -53,6 +52,7 @@
                      </a>
                      <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'home' %}">All</a>
+                        <hr/>
                         <a class="dropdown-item" href="{% url 'category' 0 %}">Action</a>
                         <a class="dropdown-item" href="{% url 'category' 1 %}">Adventure</a>
                         <a class="dropdown-item" href="{% url 'category' 2 %}">Sci-fi</a>
@@ -88,25 +88,48 @@
          <!-- Content Goes here -->
          {% endblock content %}
       </main>
-      <!-- Footer -->
-      <footer class="footer mt-auto py-3 dark-bg">
-         <ul id="social">
-            <li><a href="https://en-gb.facebook.com/" target="_blank" rel="noopener"
-                    aria-label="vist our facebook page"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="https://twitter.com/?lang=en-gb" target="_blank" rel="noopener"
-                    aria-label="vist our twitter page"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="vist our youtube page"><i
-                        class="fab fa-youtube"></i></a></li>
-            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                    aria-label="vist our instagram page"><i class="fab fa-instagram"></i></a></li>
-        </ul>
-        <ul id="contact">
-            <li><a href="#" target="_blank" rel="noopener" aria-label="vist our contact page"><i
-                        class="fas fa-comment-dots"></i> Any questions? Vist our contact page</a></li>
-            <li><a href="https://www.google.co.uk/maps?hl=en" target="_blank" rel="noopener" aria-label="our address"><i
-                        class="fas fa-map-marker-alt"></i> Find us at: 101 The street, Madeup town, UK PC1 1AB.</a></li>
-        </ul>
-      </footer>
+
+      <footer class="text-center text-white" style="background-color: #f1f1f1;">
+         <!-- Grid container -->
+         <div class="container pt-4">
+           <!-- Section: Social media -->
+           <section class="mb-4">
+             <!-- Facebook -->
+             <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="https://en-gb.facebook.com/"
+                target="_blank" rel="noopener"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-facebook-f"></i
+               ></a>
+   
+             <!-- Twitter -->
+             <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="https://twitter.com/?lang=en-gb" target="_blank" rel="noopener"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-twitter"></i
+               ></a>
+   
+             <!-- Instagram -->
+             <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="https://www.instagram.com/" target="_blank" rel="noopener"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-instagram"></i
+               ></a>
+            <!-- Youtube -->
+             <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="https://www.youtube.com/" target="_blank" rel="noopener"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-github"></i
+               ></a>
+           </section>
+           <!-- Section: Social media -->
+         </div>
+       </footer>
+   
       <script>
          setTimeout(function () {
              let messages = document.getElementById('msg');

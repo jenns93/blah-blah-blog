@@ -49,7 +49,7 @@
 
 .brand {
   font-family: Lato, sans-serif;
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #4A4A4F;
 }
@@ -239,17 +239,6 @@ body {
 #social li{
   display: inline-block;
   padding: 20px;
-  font-size: 200%;
+  font-size: 3rem;
   color: #ffff;
-}
-
-
-#contact{
-  text-align: center;
-  line-height: 50px;
-  font-size: 120%;
-}
-#contact li, #contact a{
-  text-decoration: none;
-  list-style: none;
 }

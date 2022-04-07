@@ -1,26 +1,36 @@
 {% extends 'base.html' %} {% block content %}
 {% load crispy_forms_tags %}
-<div class="masthead">
-   <div class="container">
-      <div class="row g-0">
-         <div class="d-none d-md-block col-md-6 masthead-image">
-            <!-- The featured image URL goes in the src attribute -->
-            {% if "placeholder" in post.featured_image.url %}
-            <img src="https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?cs=srgb&dl=pexels-pixabay-33129.jpg&fm=jpg" width="100%">
-            {% else %}
-            <img src=" {{ post.featured_image.url }}" width="100%">
-            {% endif %}
-         </div>
-         <div class="col-md-6 masthead-text">
-            <!-- Post title goes in these h1 tags -->
-            <h1 class="post-title">{{ post.name_of_show_or_film }}</h1>
-            <!-- Post author goes before the | the post's created date goes after -->
-            <p class="post-subtitle">Posted by: {{ post.author }} | On: {{ post.created_on|date:"d/m/y" }}</p>
-            <p class="post-subtitle">Media: {{ post.get_media_type_display }} | Genre: <a href="{% url 'category' post.genre %}">{{ post.get_genre_display }}</a></p>
-         </div>
+<div class="container">
+
+   <!-- Portfolio Item Heading -->
+
+   <h1 class="my-4">{{ post.name_of_show_or_film }}</h1>
+ 
+   <!-- Portfolio Item Row -->
+   <div class="row">
+ 
+      <div class="d-none d-md-block col-md-6 masthead-image">
+         <!-- The featured image URL goes in the src attribute -->
+         {% if "placeholder" in post.featured_image.url %}
+         <img src="https://images.pexels.com/photos/33129/popcorn-movie-party-entertainment.jpg?cs=srgb&dl=pexels-pixabay-33129.jpg&fm=jpg" width="100%">
+         {% else %}
+         <img src=" {{ post.featured_image.url }}" width="100%">
+         {% endif %}
       </div>
+ 
+     <div class="col-md-4">
+       <h3 class="my-3">Posted by: {{ post.author }}</h3>
+       <p>On: {{ post.created_on|date:"d/m/y" }}</p>
+       <h3 class="my-3">Post Details</h3>
+       <ul>
+         <li>Media: {{ post.get_media_type_display }}</li>
+         <li>Genre: <a href="{% url 'category' post.genre %}">{{ post.get_genre_display }}</a></li>
+       </ul>
+     </div>
+ 
    </div>
-</div>
+   <!-- /.row -->
+
 <div class="container">
    <div class="row">
       <div class="col card mb-4  mt-3 left  top">
@@ -89,47 +99,54 @@
    {% endif %}
    <div class="row">
       <div class="col-md-8 card mb-4  mt-3 ">
-         <div class="col-6">
-            <h3>Comments:</h3>
-            {% with comments.count as total_comments %}
-            <strong class="text-secondary">
-               <i class="far fa-comments"></i>
-               <!-- Our total_comments variable goes before the closing strong tag -->
-               {{ total_comments }}
-            </strong>
-            {% endwith %}
-         </div>
-         <div class="card-body">
-            <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-            {% for comment in comments %}
-            <div class="comments" style="padding: 10px;">
-               <p class="font-weight-bold">
-                  <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                  {{ comment.name }}
-                  <span class=" text-muted font-weight-normal">
-                     <!-- The comment's created date goes here -->
-                     {{ comment.created_on }}
-                  </span>
-                  wrote:
-               </p>
-               <!-- The body of the comment goes before the | -->
-               {{ comment.body | linebreaks }}
+         <div class="card border-0 rounded-3 shadow-lg">
+            <div class="col-6">
+               <h3>Comments:</h3>
+               {% with comments.count as total_comments %}
+               <strong class="text-secondary">
+                  <i class="far fa-comments"></i>
+                  <!-- Our total_comments variable goes before the closing strong tag -->
+                  {{ total_comments }}
+               </strong>
+               {% endwith %}
             </div>
-            <!-- Our for loop ends here -->
-            {% endfor %}
+               <div class="card-body">
+                  <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+                  {% for comment in comments %}
+                  <div class="card border-0 rounded-3 shadow-lg my-1">
+                     <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold">
+                           <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                           {{ comment.name }}
+                           <span class=" text-muted font-weight-normal">
+                              <!-- The comment's created date goes here -->
+                              {{ comment.created_on }}
+                           </span>
+                           wrote:
+                        </p>
+                        <!-- The body of the comment goes before the | -->
+                        {{ comment.body | linebreaks }}
+                     </div>
+                  </div>
+                  <!-- Our for loop ends here -->
+                  {% endfor %}
+               </div>
          </div>
       </div>
       {% if user.is_authenticated %}
-         <div class="col-md-4 card mb-4  mt-3 ">
-            <div class="card-body">
-               <h3>Leave a comment:</h3>
-               <p>Posting as: {{ user.username }}</p>
-               <form method="post" style="margin-top: 1.3em;">
-                  {{ comment_form | crispy }}
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-               </form>
+         <div class="col-md-4 card mb-4  mt-3">
+            <div class="card border-0 rounded-3 shadow-lg">
+               <div class="card-body">
+                  <h3>Leave a comment:</h3>
+                  <p>Posting as: {{ user.username }}</p>
+                  <form method="post" style="margin-top: 1.3em;">
+                     {{ comment_form | crispy }}
+                     {% csrf_token %}
+                     <button type="submit" class="btn btn-lg btn-primary btn-login text-uppercase fw-bold my-2">Submit</button>
+                  </form>
+               </div>
                <!-- For later -->
+               
             
          {% endif %}
             </div>
