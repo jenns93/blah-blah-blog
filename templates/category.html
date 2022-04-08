@@ -1,58 +1,33 @@
-{% extends "base.html" %}
-{% block content %}
-{% load crispy_forms_tags %}
-<!-- Page Content -->
-<section class="py-4">
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %} <section class="py-4">
    <div class="container">
      <h1 class="fw-light">Post & Discuss all your favorite movies, TV shows, books and more!</h1>
      <p class="lead">Blah Blah Blog is the place to make your case or argue your point!</p>
      <h1>{{ post.get_genre_display }}</h1>
    </div>
  </section>
-<div class="container">
-   <div class="row">
-      {% for post in category_posts %}
-      <!-- Team Member 1 -->
-      <div class="col-xl-3 col-md-6 mb-4">
-         <div class="card border-0 shadow">
-             <a href="{% url 'post_detail' post.slug %}">
-             {% if "placeholder" in post.featured_image.url %}
-             <img src="https://images.pexels.com/photos/5662857/pexels-photo-5662857.png?cs=srgb&dl=pexels-tima-miroshnichenko-5662857.jpg&fm=jpg" class="card-img-top" alt="...">
-             {% else %}
-             <img class="card-img-top" src=" {{ post.featured_image.url }}">
-             {% endif %}
-             </a>
-             <div class="card-body text-center">
-             <h5 class="card-title mb-0">{{ post.title }}</h5>
-             <h6 class="card-text text-black-50">{{ post.get_media_type_display }} | {{ post.name_of_show_or_film }} | {{ post.get_genre_display }}</h6>
-             <h6 class="card-text text-black-50">Author: {{ post.author }}</h6>
-             <hr />
-             <p class="card-text text-muted h6">Posted:{{ post.created_on|date:"d/m/y at H:i"}}</p>
-             <i class="far fa-smile"></i>
-             {{ post.number_of_likes }} 
-             <i class="far fa-frown"></i>
-             {{ post.number_of_dislikes }}
-             </a>
-             </div>
+ <div class="container">
+   <div class="row"> {% for post in category_posts %} <div class="col-xl-3 col-md-6 mb-4">
+       <div class="card border-0 shadow">
+         <a href="{% url 'post_detail' post.slug %}"> {% if "placeholder" in post.featured_image.url %} <img src="https://images.pexels.com/photos/5662857/pexels-photo-5662857.png?cs=srgb&dl=pexels-tima-miroshnichenko-5662857.jpg&fm=jpg" class="card-img-top" alt="..."> {% else %} <img class="card-img-top" src=" {{ post.featured_image.url }}"> {% endif %} </a>
+         <div class="card-body text-center">
+           <h5 class="card-title mb-0">{{ post.title }}</h5>
+           <h6 class="card-text text-black-50">{{ post.get_media_type_display }} | {{ post.name_of_show_or_film }} | {{ post.get_genre_display }}</h6>
+           <h6 class="card-text text-black-50">Author: {{ post.author }}</h6>
+           <hr />
+           <p class="card-text text-muted h6">Posted:{{ post.created_on|date:"d/m/y at H:i"}}</p>
+           <i class="far fa-smile"></i>
+           {{ post.number_of_likes }}
+           <i class="far fa-frown"></i>
+           {{ post.number_of_dislikes }}
+           </a>
          </div>
-     </div>
-      {% if forloop.counter|divisibleby:4 %}
-   </div>
-   <div class="row">
-      {% endif %}
-      {% endfor %}
-   </div>
-   {% if is_paginated %}
-   <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-center">
-         {% if page_obj.has_previous %}
-         <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-         {% endif %}
-         {% if page_obj.has_next %}
-         <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-         {% endif %}
-      </ul>
-   </nav>
-   {% endif %}
-</div>
-{%endblock%}
+       </div>
+     </div> {% if forloop.counter|divisibleby:4 %} </div>
+   <div class="row"> {% endif %} {% endfor %} </div> {% if is_paginated %} <nav aria-label="Page navigation">
+     <ul class="pagination justify-content-center"> {% if page_obj.has_previous %} <li>
+         <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a>
+       </li> {% endif %} {% if page_obj.has_next %} <li>
+         <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+       </li> {% endif %} </ul>
+   </nav> {% endif %}
+ </div> {%endblock%}

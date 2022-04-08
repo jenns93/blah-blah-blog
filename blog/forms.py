@@ -41,20 +41,3 @@ class PostForm(forms.ModelForm):
             'status',
             )
 
-
-class ContactForm(forms.ModelForm):
-
-    """
-    Contact Form
-    """
-
-    model = Contact
-    fields = (
-        'name',
-        'username',
-        'related_post',
-        'related_author',
-        'issue_type',
-        'issue_details',
-        'created_on',
-        )

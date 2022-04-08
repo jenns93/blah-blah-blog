@@ -117,6 +117,10 @@
   overflow: hidden;
 }
 
+.embed-responsive .card-img-top {
+  object-fit: cover;
+}
+
 .post-link {
   text-decoration: none;
   color: #445261;
@@ -182,12 +186,6 @@
 
 .login {
   min-height: 100vh;
-}
-
-.bg-image {
-  background-image: url('https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?cs=srgb&dl=pexels-vojtech-okenka-392018.jpg&fm=jpg');
-  background-size: cover;
-  background-position: center;
 }
 
 .login-heading {

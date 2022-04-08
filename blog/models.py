@@ -27,6 +27,9 @@ ISSUE_TYPE = ((0, "Post"), (1, "Comment"), (2, "User"), (3, "Profile"), (4, "Oth
 
 
 class Post(models.Model):
+    """
+    Post model
+    """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     name_of_show_or_film = models.CharField(max_length=200, unique=True)
@@ -59,6 +62,9 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Comment model
+    """
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     name = models.CharField(max_length=80)
     email = models.EmailField()

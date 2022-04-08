@@ -1,29 +1,14 @@
-{% extends "base.html" %}
-
-{% load i18n %}
-{% load account socialaccount %}
-
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
-
-{% block content %}
-<div class="container-fluid ps-md-0">
+{% extends "base.html" %} {% load i18n %} {% load account socialaccount %} {% block head_title %}{% trans "Sign In" %}{% endblock %} {% block content %} <div class="container-fluid ps-md-0">
   <div class="row g-0">
-    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-    <div class="col-md-8 col-lg-6">
+    <div class="col-12 text-center"></div>
+    <div class="col-12">
       <div class="login d-flex align-items-center py-5">
         <div class="container">
           <div class="row">
-            <div class="col-md-9 col-lg-8 mx-auto">
+            <div class="col-9  mx-auto text-center">
               <h3 class="login-heading mb-4">{% trans "Sign In" %}</h3>
-              <p>{% blocktrans %}If you have not created an account yet, then please
-                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-
-              <!-- Sign In Form -->
-              <form method="POST" action="{% url 'account_login' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {% if redirect_field_value %}
-                <div class="form-floating mb-3">
+              <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %} </p>
+              <form method="POST" action="{% url 'account_login' %}"> {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %} <div class="form-floating mb-3">
                   <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                   <label for="floatingInput">Email address</label>
                 </div>
@@ -31,21 +16,14 @@
                   <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                   <label for="floatingPassword">Password</label>
                 </div>
-
                 <div class="form-check mb-3">
                   <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                  <label class="form-check-label" for="rememberPasswordCheck">
-                    Remember password
-                  </label>
+                  <label class="form-check-label" for="rememberPasswordCheck"> Remember password </label>
                 </div>
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <div class="d-grid">
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" /> {% endif %} <div class="d-grid">
                   <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">{% trans "Sign In" %}</button>
-                  <div class="text-center">
-                  </div>
+                  <div class="text-center"></div>
                 </div>
-
               </form>
             </div>
           </div>
@@ -53,5 +31,4 @@
       </div>
     </div>
   </div>
-</div>
-{% endblock %}
+</div> {% endblock %}
